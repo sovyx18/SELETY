@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>SELETY — Cápsula de Autoridad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
@@ -31,20 +32,26 @@
       border-radius: 5px;
     }
     .container {
-      padding: 40px;
+      padding: 40px 20px;
       max-width: 800px;
       margin: auto;
     }
     h1 {
       font-size: 2em;
       margin-bottom: 10px;
-      color: #fff;
+    }
+    .section {
+      margin-bottom: 40px;
     }
     .service {
       background-color: #111;
       border-left: 5px solid #8000ff;
       padding: 20px;
       margin-bottom: 20px;
+    }
+    .counter {
+      font-size: 1.2em;
+      margin-bottom: 30px;
     }
     form {
       background-color: #111;
@@ -56,7 +63,7 @@
       margin-top: 15px;
       font-weight: bold;
     }
-    input, select, textarea {
+    input, select {
       width: 100%;
       padding: 10px;
       margin-top: 5px;
@@ -75,9 +82,14 @@
       font-size: 1em;
       cursor: pointer;
     }
-    .counter {
-      margin-bottom: 30px;
-      font-size: 1.2em;
+    @media screen and (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .logo-right {
+        margin-top: 10px;
+      }
     }
   </style>
 </head>
@@ -89,75 +101,86 @@
   </header>
 
   <div class="container">
-    <h1>Activa tu cápsula de autoridad</h1>
-    <p>Recibirás 3 servicios ritualizados. Solo 20 accesos disponibles.</p>
 
-    <div class="counter">
-      <p>Accesos disponibles hoy: <span id="dailySlots">2</span> / 2</p>
-      <p>Accesos totales restantes: <span id="totalSlots">20</span> / 20</p>
+    <!-- Sección 1: Intro -->
+    <div class="section" id="intro">
+      <h1>Activa tu cápsula de autoridad</h1>
+      <p>Recibirás 3 servicios ritualizados. Solo 20 accesos disponibles.</p>
+
+      <div class="counter">
+        <p>Accesos disponibles hoy: <span id="dailySlots">2</span> / 2</p>
+        <p>Accesos totales restantes: <span id="totalSlots">20</span> / 20</p>
+      </div>
+
+      <div class="service">
+        <h2>1. Mapa de Autoridad Local con IA</h2>
+        <p>Optimización de presencia en Google Maps + reseñas simbólicas + ruta desde Gmail.</p>
+      </div>
+
+      <div class="service">
+        <h2>2. Landing de Conversión Ritualizada</h2>
+        <p>Diseño de página con urgencia simbólica + botón de pago + automatización de seguimiento.</p>
+      </div>
+
+      <div class="service">
+        <h2>3. Asistente de Ventas con IA</h2>
+        <p>Chatbot entrenado con tu tono + integración web/WhatsApp + guión emocional.</p>
+      </div>
     </div>
 
-    <div class="service">
-      <h2>1. Mapa de Autoridad Local con IA</h2>
-      <p>Optimización de presencia en Google Maps + reseñas simbólicas + ruta desde Gmail.</p>
+    <!-- Sección 2: Formulario -->
+    <div class="section" id="formulario">
+      <form id="validationForm">
+        <h2>Solicita tu cápsula</h2>
+        <label>Nombre del negocio o proyecto</label>
+        <input type="text" id="negocio" required>
+
+        <label>Ubicación del negocio</label>
+        <input type="text" id="ubicacion" required>
+
+        <label>¿Tienes presencia en Google Maps?</label>
+        <select id="maps">
+          <option>Sí</option>
+          <option>No</option>
+          <option>No sé</option>
+        </select>
+
+        <label>¿Tienes una página web activa?</label>
+        <select id="web">
+          <option>Sí</option>
+          <option>No</option>
+          <option>En construcción</option>
+        </select>
+
+        <label>¿Qué vendes o qué servicio ofreces?</label>
+        <input type="text" id="servicio" required>
+
+        <label>¿Cuál es tu objetivo en los próximos 30 días?</label>
+        <select id="objetivo">
+          <option>Aumentar ventas</option>
+          <option>Posicionarme en Google</option>
+          <option>Automatizar respuestas</option>
+          <option>Lanzar algo nuevo</option>
+          <option>Otro</option>
+        </select>
+
+        <label>¿Estás dispuesto a invertir 1.000 € en esta cápsula?</label>
+        <select id="inversion">
+          <option>Sí</option>
+          <option>No</option>
+          <option>Necesito saber más</option>
+        </select>
+
+        <label>Correo electrónico de contacto</label>
+        <input type="email" id="email" required>
+
+        <button type="submit">Solicitar acceso</button>
+      </form>
     </div>
 
-    <div class="service">
-      <h2>2. Landing de Conversión Ritualizada</h2>
-      <p>Diseño de página con urgencia simbólica + botón de pago + automatización de seguimiento.</p>
-    </div>
+    <!-- Sección 3: Link de pago (solo si aprobado) -->
+    <!-- Este se activa por redirección automática en el script -->
 
-    <div class="service">
-      <h2>3. Asistente de Ventas con IA</h2>
-      <p>Chatbot entrenado con tu tono + integración web/WhatsApp + guión emocional.</p>
-    </div>
-
-    <form id="validationForm">
-      <h2>Solicita tu cápsula</h2>
-      <label>Nombre del negocio o proyecto</label>
-      <input type="text" id="negocio" required>
-
-      <label>Ubicación del negocio</label>
-      <input type="text" id="ubicacion" required>
-
-      <label>¿Tienes presencia en Google Maps?</label>
-      <select id="maps">
-        <option>Sí</option>
-        <option>No</option>
-        <option>No sé</option>
-      </select>
-
-      <label>¿Tienes una página web activa?</label>
-      <select id="web">
-        <option>Sí</option>
-        <option>No</option>
-        <option>En construcción</option>
-      </select>
-
-      <label>¿Qué vendes o qué servicio ofreces?</label>
-      <input type="text" id="servicio" required>
-
-      <label>¿Cuál es tu objetivo en los próximos 30 días?</label>
-      <select id="objetivo">
-        <option>Aumentar ventas</option>
-        <option>Posicionarme en Google</option>
-        <option>Automatizar respuestas</option>
-        <option>Lanzar algo nuevo</option>
-        <option>Otro</option>
-      </select>
-
-      <label>¿Estás dispuesto a invertir 1.000 € en esta cápsula?</label>
-      <select id="inversion">
-        <option>Sí</option>
-        <option>No</option>
-        <option>Necesito saber más</option>
-      </select>
-
-      <label>Correo electrónico de contacto</label>
-      <input type="email" id="email" required>
-
-      <button type="submit">Solicitar acceso</button>
-    </form>
   </div>
 
   <script>
