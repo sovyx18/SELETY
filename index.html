@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>SELETY</title>
+  <title>SELETY — Cápsula de Autoridad</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -36,12 +36,16 @@
       max-width: 800px;
       margin: auto;
     }
+    .section {
+      display: none;
+      margin-bottom: 40px;
+    }
+    .active {
+      display: block;
+    }
     h1 {
       font-size: 2em;
       margin-bottom: 10px;
-    }
-    .section {
-      margin-bottom: 40px;
     }
     .service {
       background-color: #111;
@@ -82,13 +86,6 @@
       font-size: 1em;
       cursor: pointer;
     }
-    #pago {
-      display: none;
-      background-color: #111;
-      padding: 30px;
-      border-radius: 10px;
-      text-align: center;
-    }
     @media screen and (max-width: 600px) {
       header {
         flex-direction: column;
@@ -110,9 +107,9 @@
   <div class="container">
 
     <!-- Sección 1: Intro -->
-    <div class="section" id="intro">
-      <h1>Activa</h1>
-      <p>Recibirás 3 servicios. Solo 20 accesos disponibles.</p>
+    <div class="section active" id="intro">
+      <h1>Activa tu cápsula de autoridad</h1>
+      <p>Recibirás 3 servicios ritualizados. Solo 20 accesos disponibles.</p>
 
       <div class="counter">
         <p>Accesos disponibles hoy: <span id="dailySlots">2</span> / 2</p>
@@ -133,12 +130,14 @@
         <h2>3. Asistente de Ventas con IA</h2>
         <p>Chatbot entrenado con tu tono + integración web/WhatsApp + guión emocional.</p>
       </div>
+
+      <button onclick="showSection('formulario')">Solicitar cápsula</button>
     </div>
 
     <!-- Sección 2: Formulario -->
     <div class="section" id="formulario">
       <form id="validationForm">
-        <h2>Solicita tu cápsula</h2>
+        <h2>Validación simbólica</h2>
         <label>Nombre del negocio o proyecto</label>
         <input type="text" id="negocio" required>
 
@@ -181,13 +180,13 @@
         <label>Correo electrónico de contacto</label>
         <input type="email" id="email" required>
 
-        <button type="submit">Solicitar acceso</button>
+        <button type="submit">Enviar solicitud</button>
       </form>
     </div>
 
     <!-- Sección 3: Pago -->
     <div class="section" id="pago">
-      <h2>Tu cápsula está lista</h2>
+      <h2>Tu cápsula fue aprobada</h2>
       <p>Completa esta escena para activar tu acceso.</p>
       <a href="https://tu-enlace-payoneer.com/pago" target="_blank">
         <button>Ir al pago de 1.000 €</button>
@@ -197,6 +196,12 @@
   </div>
 
   <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     const maxDaily = 2;
     const maxTotal = 20;
 
@@ -234,9 +239,15 @@
           totalUsed++;
           localStorage.setItem('dailyUsed', dailyUsed);
           localStorage.setItem('totalUsed', totalUsed);
-          document.getElementById('pago').style.display = 'block';
-          window.scrollTo({ top: document.getElementById('pago').offsetTop, behavior: 'smooth' });
+          showSection('pago');
         } else {
           alert('Los accesos de hoy ya fueron activados. Vuelve mañana como prioridad si llegas a tiempo.');
         }
-      } else
+      } else {
+        alert('Tu cápsula aún no está lista. Esta escena se cerró para ti.');
+      }
+    });
+  </script>
+
+</body>
+</html>
